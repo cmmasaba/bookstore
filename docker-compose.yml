@@ -2,12 +2,16 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:12
+    image: postgres:14.0-alpine
+    ports:
+      - "5433"
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-    - "POSTGRES_HOST_AUTH_METHOD=trust"
+    - POSTGRES_DB=postgres
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
 
   web:
     build: .
