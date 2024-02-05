@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{% static 'styles/base.css' %}">
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navigation">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'home' %}">Bookstore</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,19 +22,15 @@
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button type="submit">Log out</button>
-                            </form>
-                        </li>
+                            <li class="nav-item">
+                                <form action="{% url 'account_logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit">Log out</button>
+                                </form>
+                            </li>
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-                        </li>
+                            <a href="{% url 'account_login' %}" class="p-2 text-dark">Log In</a>
+                            <a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up</a>
                         {% endif %}
                     </ul>
                 </div>
