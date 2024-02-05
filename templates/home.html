@@ -3,6 +3,16 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-    <p>This is the homepage</p>
     <h1>Homepage</h1>
+    {% if user.is_authenticated %}
+        <p>Hi {{ user.email }}!</p>
+        <form action="{% url 'account_logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log out</button>
+        </form>
+    {% else %}
+        <p>Your are not logged in</p>
+        <p><a href="{% url 'account_login' %}">Log In</a> | 
+        <a href="{% url 'account_signup' %}">Sign Up</a></p>
+    {% endif %}
 {% endblock content %}
