@@ -23,6 +23,9 @@ services:
       - 8000:8000
     depends_on:
       - db
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-3wpdkv@ggaib-l&j1u*j2u6q(botxd2-)y@t$$k2^c97@v54+&$$
   
 volumes:
   postgres_data: 
